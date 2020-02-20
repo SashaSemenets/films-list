@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://www.myapifilms.com/imdb',
+  token: 'ba5ce70f-ec75-41c2-8998-17eba607adc6'
 };
 
 /*

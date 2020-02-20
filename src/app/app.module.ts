@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilmsService } from './core/films.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { FavoritesPageModule } from './pages/favorites/favorites.module';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ParamInterceptor } from './core/api.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,8 +29,12 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     StatusBar,
     FilmsService,
     SplashScreen,
-    InAppBrowser,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ParamInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

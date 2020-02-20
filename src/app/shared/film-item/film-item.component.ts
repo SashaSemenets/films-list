@@ -22,7 +22,7 @@ export class FilmItemComponent implements OnInit {
   }
 
   openFilmPageInBrowser(url) {
-    window.open(url, '_system');
+    window.open(url, '_blanc', 'location: yes');
   }
 
   addToFavoriteList(event) {

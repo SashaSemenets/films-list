@@ -3,24 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Film } from './models/film';
 import { DataApi } from './models/api-response';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmsService {
-  private filmsUrl: string = '../../assets';
+  private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getTopFilms() {
-    return this.http.get(this.filmsUrl+'/films.json')
+    return this.http.get(this.apiUrl + '/top?start=1&end=20&format=json&data=1')
       .pipe(
         map((dataAPi: DataApi) => dataAPi['data']),
       );
   }
 
   getFilmsByDecade(startDate: number, endDate: number) {
-    return this.http.get(this.filmsUrl+'/decade.json')
+    return this.http.get(this.apiUrl + `/top?start=${startDate}&end=${endDate}&format=json&data=1`)
       .pipe(
         map((dataAPi: DataApi) => dataAPi['data'].movies),
         map((res: Array<Film>) => res.sort(this.compareByDecade)),
