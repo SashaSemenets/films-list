@@ -1,0 +1,4 @@
+<ion-item *ngFor="let movie of movies">
+  <app-film-item [movie]="movie" (onAddToFavoriteList)="handleAddToFavoriteList($event)"
+    (onRemoveFromFavoriteList)="handleRemoveFromFavoriteList($event)"></app-film-item>
+</ion-item>

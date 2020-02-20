@@ -1,0 +1,47 @@
+<ion-card>
+  <ion-img [src]="movie.urlPoster"></ion-img>
+
+  <div *ngIf="movie.favorite; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <button item-right clear (click)="removeFromFavoriteList(movie.idIMDB)">
+      <ion-icon name="heart" class="favorite"></ion-icon>
+    </button>
+  </ng-template>
+
+  <ng-template #elseBlock>
+    <button item-right clear (click)="addToFavoriteList(movie)">
+      <ion-icon name="heart-outline" class="unfavorite"></ion-icon>
+    </button>
+  </ng-template>
+
+  <ion-card-header>
+    <ion-card-title (tap)="openFilmPageInBrowser(movie.urlIMDB)">{{movie.title}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-row>
+      <ion-col size="3">Year</ion-col>
+      <ion-col size="9">{{movie.year}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">Rating</ion-col>
+      <ion-col size="9">{{movie.rating}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">Genres</ion-col>
+      <ion-col size="9">{{movie.genres.join(', ')}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">Countries</ion-col>
+      <ion-col size="9">{{movie.countries.join(', ')}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">Directors</ion-col>
+      <ion-col size="9">{{modifyDirectorsField(movie.directors)}}</ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

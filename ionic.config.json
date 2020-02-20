@@ -1,0 +1,8 @@
+{
+  "name": "films-list",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
